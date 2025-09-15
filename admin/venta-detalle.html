@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Venta - Admin</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <div class="sidebar-header"><h2>Admin Panel</h2></div>
+            <nav class="admin-nav">
+                <a href="index.html">Dashboard</a>
+                <a href="productos.html">Productos</a>
+                <a href="usuarios.html">Usuarios</a>
+                <a href="ventas.html" class="active">Ventas</a>
+            </nav>
+            <div class="sidebar-footer"><button id="logout-btn">Cerrar Sesión</button></div>
+        </aside>
+        <main class="admin-content">
+            <header class="admin-header">
+                <h1 id="order-id-title">Detalle del Pedido</h1>
+                <a href="ventas.html" class="btn-secondary">Volver a Ventas</a>
+            </header>
+
+            <div class="order-detail-container">
+                <div class="order-info">
+                    <h3>Información del Pedido</h3>
+                    <p><strong>ID Pedido:</strong> <span id="order-id"></span></p>
+                    <p><strong>Fecha:</strong> <span id="order-date"></span></p>
+                    <p><strong>Cliente:</strong> <span id="order-customer"></span></p>
+                    <p><strong>Monto Total:</strong> <span id="order-total"></span></p>
+                </div>
+
+                <div class="order-items">
+                    <h3>Productos en el Pedido</h3>
+                    <div id="order-items-list">
+                        </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="admin.js"></script>
+</body>
+</html>
