@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 1. LISTA DE PRODUCTOS INICIAL ---
+    // --- LÓGICA DE DATOS E INICIALIZACIÓN ---
+    // Mantenemos la lista de productos para saber qué estamos añadiendo al carrito.
     const initialProducts = [
         { id: 'TC001', category: 'Tortas Cuadradas', name: 'Torta Cuadrada de Chocolate', price: 45000, image: 'assets/images/TC001.jpg', description: 'Deliciosa torta de chocolate con capas de ganache y un toque de avellanas. Personalizable con mensajes especiales.', stock: 15, size: 'Familiar', personalizable: true },
         { id: 'TC002', category: 'Tortas Cuadradas', name: 'Torta Cuadrada de Frutas', price: 50000, image: 'assets/images/TC002.jpg', description: 'Una mezcla de frutas frescas y crema chantilly sobre un suave bizcocho de vainilla, ideal para celebraciones.', stock: 12, size: 'Familiar', personalizable: true },
@@ -19,13 +20,91 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 'TE001', category: 'Tortas Especiales', name: 'Torta Especial de Cumpleaños', price: 55000, image: 'assets/images/TE001.jpg', description: 'Diseñada especialmente para celebraciones, personalizable con decoraciones y mensajes únicos.', stock: 10, size: 'Familiar', personalizable: true },
         { id: 'TE002', category: 'Tortas Especiales', name: 'Torta Especial de Boda', price: 60000, image: 'assets/images/TE002.jpg', description: 'Elegante y deliciosa, esta torta está diseñada para ser el centro de atención en cualquier boda.', stock: 5, size: 'Familiar', personalizable: true }
     ];
-    // Guardar en localStorage si no existen para persistencia de datos
+    // Guardamos los productos en localStorage si no existen ya (para persistencia simple).
     if (!localStorage.getItem('products')) {
         localStorage.setItem('products', JSON.stringify(initialProducts));
     }
-
-    // Cargar productos desde localStorage
     const products = JSON.parse(localStorage.getItem('products'));
+
+    // --- FUNCIONES ESENCIALES DEL CARRITO ---
+
+    // Obtiene el carrito desde localStorage. Si no existe, devuelve un array vacío.
+    const getCart = () => JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Guarda el carrito en localStorage.
+    const saveCart = (cart) => localStorage.setItem('cart', JSON.stringify(cart));
+
+    // Actualiza el número en el ícono del carrito en el header.
+    const updateCartCounter = () => {
+        const cart = getCart();
+        const cartCounter = document.getElementById('cart-counter');
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        if (cartCounter) cartCounter.textContent = totalItems;
+    }
+
+    // Añade un producto al carrito. Si ya existe, aumenta su cantidad.
+    const addToCart = (productId) => {
+        const cart = getCart();
+        const productInCart = cart.find(item => item.id === productId);
+
+        if (productInCart) {
+            productInCart.quantity++; // Aumenta la cantidad
+        } else {
+            cart.push({ id: productId, quantity: 1 }); // Añade el producto nuevo
+        }
+        
+        saveCart(cart);
+        updateCartCounter();
+        alert('¡Producto añadido al carrito!');
+    };
+
+    // --- LÓGICA PARA "DIBUJAR" LOS PRODUCTOS EN LA PÁGINA DEL CARRITO ---
+    const cartItemsContainer = document.getElementById('cart-items-container');
+    if (cartItemsContainer) {
+        const cart = getCart();
+        
+        if (cart.length > 0) {
+            cartItemsContainer.innerHTML = ''; // Limpiar el mensaje de "carrito vacío"
+            let subtotal = 0;
+
+            cart.forEach(item => {
+                const product = products.find(p => p.id === item.id);
+                if (product) {
+                    const itemTotal = product.price * item.quantity;
+                    subtotal += itemTotal;
+                    
+                    const cartItemHTML = `
+                        <div class="cart-item" data-id="${product.id}">
+                            <div class="cart-item-image">
+                                <img src="${product.image}" alt="${product.name}">
+                            </div>
+                            <div class="cart-item-details">
+                                <h3>${product.name}</h3>
+                                <div class="cart-item-quantity">
+                                    <button class="quantity-btn decrease-qty">-</button>
+                                    <span class="item-quantity">${item.quantity}</span>
+                                    <button class="quantity-btn increase-qty">+</button>
+                                </div>
+                            </div>
+                            <div class="cart-item-price">$${product.price.toLocaleString('es-CL')}</div>
+                            <div class="cart-item-total">$${itemTotal.toLocaleString('es-CL')}</div>
+                            <button class="remove-item-btn">✖</button>
+                        </div>
+                    `;
+                    cartItemsContainer.innerHTML += cartItemHTML;
+                }
+            });
+
+            // Actualizar el resumen del pedido
+            const cartSummaryContainer = document.getElementById('cart-summary-container');
+            if(cartSummaryContainer) {
+                document.getElementById('cart-subtotal').textContent = `$${subtotal.toLocaleString('es-CL')}`;
+                document.getElementById('cart-total').textContent = `$${subtotal.toLocaleString('es-CL')}`;
+                cartSummaryContainer.style.display = 'block';
+            }
+        }
+    }
+
 
     // --- 2. FUNCIÓN PARA "DIBUJAR" PRODUCTOS ---
     const renderProducts = (container, productList) => {
@@ -46,12 +125,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+
     // --- LÓGICA PARA MOSTRAR PRODUCTOS EN CADA PÁGINA ---
 
     // A. En la página de inicio (index.html), mostrando 4 productos destacados al azar los que tu quieras .
     const homeProductList = document.getElementById('product-list');
     if (homeProductList) {
-        const featuredProducts = [...products].sort(() => 0.5 - Math.random()).slice(0,4);
+        const featuredProducts = [...products].sort(() => 0.5 - Math.random()).slice(0,4); //Cantidad de productos destacados
         renderProducts(homeProductList, featuredProducts);
     }
 
@@ -61,5 +141,17 @@ document.addEventListener('DOMContentLoaded', () => {
         renderProducts(allProductsList, products);
         // Nota: La lógica de los filtros se añadirá en una tarea futura.
     }
+
+    // --- EVENT LISTENER PARA AÑADIR PRODUCTOS AL CARRITO ---
+    // Necesario para que el botón "Añadir al Carrito" de otras páginas funcione
+    document.body.addEventListener('click', (e) => {
+        if (e.target.classList.contains('add-to-cart-btn')) {
+            const productId = e.target.dataset.id;
+            addToCart(productId);
+        }
+    });
+
+    // --- INICIALIZACIÓN ---
+    updateCartCounter(); // Para que el contador del header esté siempre actualizado.
 
 });
