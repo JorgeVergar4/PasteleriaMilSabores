@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nuestra Historia - Pastelería Mil Sabores</title>
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="header">
         <div class="container">
-            <div class="logo"><a href="index.html">Pastelería Mil Sabores</a></div>
+            <div class="logo">
+                <a href="index.html">Pastelería Mil Sabores</a>
+            </div>
             <nav class="navigation">
                 <ul>
                     <li><a href="index.html">Home</a></li>
@@ -23,45 +22,99 @@
                 </ul>
             </nav>
             <div class="user-options">
-                </div>
+                <a href="login.html" class="btn btn-secondary">Iniciar Sesión</a>
+                <a href="registro.html" class="btn">Registrarse</a>
+                  <a href="carrito.html" class="cart-icon">
+                      <img src="assets/images/carrito.svg" alt="Carrito de Compras">
+                      <span id="cart-counter">0</span>
+                  </a>
+                </a>
+            </div>
         </div>
     </header>
 
     <main class="about-page">
         <section class="about-intro">
             <div class="container">
-                <h1></h1>
-                <p></p>
+                <h1>Nuestra Dulce Historia</h1>
+                <p>Durante más de 50 años, hemos horneado con amor, convirtiendo ingredientes de alta calidad en momentos de felicidad. Somos más que una pastelería; somos parte de tus celebraciones.</p>
             </div>
         </section>
 
         <section class="container">
             <div class="timeline">
-                <h2></h2>
+                <h2>Un Viaje a Través del Sabor</h2>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>1975 - El Comienzo</h3>
+                        <p>Nuestra fundadora, Eliana Soto, abre las puertas de una pequeña pastelería en el corazón de Santiago, usando las recetas secretas de su abuela y un sueño: endulzar la vida de la comunidad.</p>
+                    </div>
                 </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>1995 - Récord Guinness</h3>
+                        <p>Hicimos historia al colaborar en la creación de la torta más grande del mundo, un hito que nos puso en el mapa y demostró nuestra pasión por la repostería a gran escala.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>2015 - Alianza con Duoc UC</h3>
+                        <p>Iniciamos nuestra valiosa colaboración con los estudiantes de gastronomía de Duoc UC, uniendo la tradición con la innovación para crear postres únicos y apoyar a los futuros talentos de Chile.</p>
+                    </div>
+                </div>
+                 <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Hoy - La Tradición Online</h3>
+                        <p>Llevamos nuestra herencia de sabor al mundo digital, permitiendo que nuestros clientes de todo el país disfruten de la calidad y el cariño de siempre, ahora desde la comodidad de su hogar.</p>
+                    </div>
+                </div>
+            </div>
         </section>
         
         <section class="philosophy">
             <div class="container">
-                <h2></h2>
+                <h2>Nuestra Filosofía</h2>
                 <div class="philosophy-points">
+                    <div class="philosophy-item">
+                        <h3>Calidad</h3>
+                        <p>Seleccionamos solo los mejores ingredientes, desde el chocolate belga hasta las frutas frescas de agricultores locales.</p>
                     </div>
+                    <div class="philosophy-item">
+                        <h3>Tradición</h3>
+                        <p>Cada receta es un tesoro familiar, perfeccionado a lo largo de generaciones para mantener el sabor auténtico que nos caracteriza.</p>
+                    </div>
+                     <div class="philosophy-item">
+                        <h3>Comunidad</h3>
+                        <p>Creemos en el talento local. Apoyamos a la nueva generación de chefs y nos enorgullece ser parte de tus momentos más especiales.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section class="about-cta">
             <div class="container">
-                 <h2></h2>
-                 <p></p>
-                 </div>
+                <h2>¿Listo para Probar?</h2>
+                <p>Explora nuestro catálogo y descubre por qué hemos sido la pastelería preferida de Chile por 50 años.</p>
+                <a href="productos.html" class="btn">Ver Nuestros Productos</a>
+            </div>
         </section>
 
         <section class="map-section container">
-            <h2></h2>
-            <p></p>
-            <div class="map-container">
-                </div>
+            <h2>Nuestras Entregas por Santiago</h2>
+            <p>Desde el centro histórico hasta las comunas más lejanas, ¡llevamos dulzura a toda la región!</p>
+              <div class="map-container">
+                          <iframe 
+                              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d212998.5822361134!2d-70.78423321550293!3d-33.472472800000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662c5410425af2f%3A0x8475d53c400f0931!2sSantiago%2C%20Regi%C3%B3n%20Metropolitana!5e0!3m2!1ses-419!2scl!4v1726369500000!5m2!1ses-419!2scl" 
+                              width="100%" 
+                              height="450" 
+                              style="border:0;" 
+                              allowfullscreen="" 
+                              loading="lazy" 
+                              referrerpolicy="no-referrer-when-downgrade">
+                          </iframe>
+                      </div>
         </section>
+
     </main>
 
     <footer class="footer">

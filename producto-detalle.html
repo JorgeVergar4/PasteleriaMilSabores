@@ -17,13 +17,17 @@
                 <a href="index.html">Pastelería Mil Sabores</a>
             </div>
             <nav class="navigation">
-                 <ul>
+                <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="productos.html">Productos</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
                 </ul>
             </nav>
             <div class="user-options">
                 <a href="login.html" class="btn btn-secondary">Iniciar Sesión</a>
+                <a href="registro.html" class="btn">Registrarse</a>
                   <a href="carrito.html" class="cart-icon">
                       <img src="assets/images/carrito.svg" alt="Carrito de Compras">
                       <span id="cart-counter">0</span>
@@ -33,8 +37,18 @@
     </header>
 
     <main class="product-detail-page">
-        <div class="container" id="product-detail-container">
-            <p>Cargando producto...</p>
+        <div class="container">
+            <nav id="breadcrumbs" class="breadcrumbs"></nav>
+
+            <div id="product-detail-container" class="product-detail-layout">
+                <p>Cargando producto...</p>
+            </div>
+
+            <section class="related-products">
+                <h2>También te podría interesar</h2>
+                <div id="related-products-grid" class="product-grid">
+                    </div>
+            </section>
         </div>
     </main>
 
@@ -43,6 +57,7 @@
             <p>&copy; 2025 Pastelería Mil Sabores.</p>
         </div>
     </footer>
+
 
     <script src="assets/js/main.js"></script>
 </body>
