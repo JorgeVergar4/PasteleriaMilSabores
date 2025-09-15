@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Pedido Confirmado! - Pastelería Mil Sabores</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo"><a href="index.html">Pastelería Mil Sabores</a></div>
+            <nav class="navigation">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="productos.html">Productos</a></li>
+                </ul>
+            </nav>
+            <div class="user-options">
+                </div>
+        </div>
+    </header>
+
+    <main class="confirmation-page">
+        <div class="container">
+            <div class="confirmation-box">
+                <div class="confirmation-icon">🎉</div>
+                <h1>¡Gracias por tu compra!</h1>
+                <p class="subtitle">Tu pedido ha sido recibido y ya lo estamos preparando. Recibirás una notificación por correo cuando esté en camino.</p>
+                
+                <div class="order-summary">
+                    <h3>Resumen de tu Pedido</h3>
+                    <div id="summary-items">
+                        </div>
+                    <div class="summary-total" id="summary-total">
+                        </div>
+                </div>
+
+                <div class="confirmation-actions">
+                    <a href="index.html" class="btn-secondary">Volver a la Tienda</a>
+                    <button id="view-receipt-btn" class="btn">Ver Boleta</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Pastelería Mil Sabores.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/confirmacion.js"></script>
+    <script src="assets/js/main.js"></script> </body>
+</html>

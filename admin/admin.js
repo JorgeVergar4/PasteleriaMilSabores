@@ -389,4 +389,33 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // --- 🔹 NUEVO: BOTÓN FINALIZAR COMPRA (checkout.html) ---
+    const checkoutBtn = document.getElementById('finalizar-compra-btn');
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener('click', () => {
+            const carrito = JSON.parse(localStorage.getItem('cart')) || [];
+            const cliente = JSON.parse(localStorage.getItem('currentCustomer')) || null;
+
+            if (!cliente) { alert('Debe iniciar sesión para finalizar la compra.'); return; }
+            if (carrito.length === 0) { alert('El carrito está vacío.'); return; }
+
+            let order = {
+                id: `ORD-${Date.now()}`,
+                date: new Date().toLocaleString(),
+                customer: cliente.nombre + ' ' + cliente.apellidos,
+                items: carrito,
+                status: 'Pendiente'
+            };
+
+            order = aplicarDescuentos(order, cliente);
+
+            let orders = JSON.parse(localStorage.getItem('orders')) || [];
+            orders.push(order);
+            localStorage.setItem('orders', JSON.stringify(orders));
+
+            localStorage.removeItem('cart'); // Vaciar carrito
+            window.location.href = 'confirmacion.html';
+        });
+    }
+
 });
