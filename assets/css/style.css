@@ -1,0 +1,163 @@
+
+/* --- Importación de Fuentes --- */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Pacifico&display=swap');
+
+/* --- Variables de Diseño Visual --- */
+:root {
+    /* Paleta de Colores */
+    --bg-main: #FFF5E1;       /* Crema Pastel */
+    --accent-pink: #FFC0CB;   /* Rosa Suave */
+    --accent-chocolate: #8B4513; /* Chocolate */
+    --text-main: #5D4037;     /* Marrón Oscuro */
+    --text-secondary: #B0BEC5; /* Gris Claro */
+    --white: #FFFFFF;
+
+    /* Tipografía */
+    --font-main: 'Lato', sans-serif;
+    --font-headings: 'Pacifico', cursive;
+
+    /* Otros */
+    --border-radius: 8px;
+    --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* --- Estilos Globales y Layout General --- */
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    margin: 0;
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-headings);
+    color: var(--accent-chocolate);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+a {
+    text-decoration: none;
+    color: var(--accent-chocolate);
+}
+
+/* --- Header y Navegación --- */
+.header {
+    background-color: var(--white);
+    box-shadow: var(--box-shadow);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a {
+    font-family: var(--font-headings);
+    font-size: 2rem;
+    color: var(--accent-chocolate);
+}
+
+.navigation ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+.navigation a {
+    color: var(--text-main);
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.navigation a:hover {
+    color: var(--accent-pink);
+}
+
+.user-options {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.cart-icon {
+    position: relative;
+}
+
+.cart-icon img { 
+    height: 28px; 
+}
+
+#cart-counter {
+    position: absolute;
+    top: -8px;
+    right: -12px;
+    background-color: var(--accent-pink);
+    color: var(--accent-chocolate);
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 2px 7px;
+    font-size: 0.8rem;
+    line-height: 1;
+}
+
+/* --- Botones --- */
+.btn {
+    display: inline-block;
+    padding: 10px 22px;
+    border-radius: var(--border-radius);
+    font-weight: 700;
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Botón Primario (Rosa) */
+.btn {
+    background-color: var(--accent-pink);
+    color: var(--accent-chocolate);
+    border-color: var(--accent-pink);
+}
+
+/* Botón Secundario (Contorno) */
+.btn.btn-secondary {
+    background-color: transparent;
+    border-color: var(--accent-chocolate);
+    color: var(--accent-chocolate);
+}
+
+.btn.btn-secondary:hover {
+    background-color: var(--accent-chocolate);
+    color: var(--white);
+}
+
+
+/* --- Footer --- */
+.footer {
+    background: var(--text-main);
+    color: var(--bg-main);
+    padding: 25px 0;
+    text-align: center;
+}
+
+.footer a {
+    color: var(--white);
+    margin: 0 10px;
+}
