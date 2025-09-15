@@ -1,3 +1,20 @@
+/* --- Espaciado para acciones de login admin --- */
+.login-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.login-actions .btn,
+.login-actions .btn.btn-secondary {
+    width: 200px;
+    max-width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+/* assets/css/style.css */
 
 /* --- Importación de Fuentes --- */
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Pacifico&display=swap');
@@ -21,7 +38,7 @@
     --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
-/* --- Estilos Globales y Layout General --- */
+/* --- Estilos Globales --- */
 body {
     font-family: var(--font-main);
     background-color: var(--bg-main);
@@ -39,11 +56,6 @@ h1, h2, h3, h4, h5, h6 {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-}
-
-a {
-    text-decoration: none;
-    color: var(--accent-chocolate);
 }
 
 /* --- Header y Navegación --- */
@@ -65,6 +77,7 @@ a {
 .logo a {
     font-family: var(--font-headings);
     font-size: 2rem;
+    text-decoration: none;
     color: var(--accent-chocolate);
 }
 
@@ -77,6 +90,7 @@ a {
 }
 
 .navigation a {
+    text-decoration: none;
     color: var(--text-main);
     font-weight: 700;
     transition: color 0.3s ease;
@@ -96,9 +110,7 @@ a {
     position: relative;
 }
 
-.cart-icon img { 
-    height: 28px; 
-}
+.cart-icon img { height: 28px; }
 
 #cart-counter {
     position: absolute;
@@ -110,18 +122,18 @@ a {
     border-radius: 50%;
     padding: 2px 7px;
     font-size: 0.8rem;
-    line-height: 1;
 }
 
 /* --- Botones --- */
 .btn {
-    display: inline-block;
     padding: 10px 22px;
     border-radius: var(--border-radius);
+    text-decoration: none;
     font-weight: 700;
-    transition: all 0.2s ease;
-    border: 2px solid transparent;
-    cursor: pointer;
+    transition: transform 0.2s ease;
+    background-color: var(--accent-pink);
+    color: var(--accent-chocolate);
+    border: 2px solid var(--accent-pink);
 }
 
 .btn:hover {
@@ -129,39 +141,45 @@ a {
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-/* Botón Primario (Rosa) */
-.btn {
-    background-color: var(--accent-pink);
-    color: var(--accent-chocolate);
-    border-color: var(--accent-pink);
-}
-
-/* Botón Secundario (Contorno) */
 .btn.btn-secondary {
     background-color: transparent;
     border-color: var(--accent-chocolate);
     color: var(--accent-chocolate);
 }
 
-.btn.btn-secondary:hover {
-    background-color: var(--accent-chocolate);
-    color: var(--white);
+/* --- Sección Hero --- */
+.hero {
+    padding: 80px 0;
+    background: #fffaf0;
 }
 
-
-/* --- Footer --- */
-.footer {
-    background: var(--text-main);
-    color: var(--bg-main);
-    padding: 25px 0;
-    text-align: center;
+.hero .container {
+    display: flex;
+    align-items: center;
+    gap: 40px;
 }
 
-.footer a {
-    color: var(--white);
-    margin: 0 10px;
+.hero-content { flex: 1; }
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
 }
-/* --- Estilos para la Página de Productos --- */
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.hero-image { flex: 1; text-align: center; }
+
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
 /* --- Productos Destacados --- */
 .featured-products {
     padding: 60px 0;
@@ -212,6 +230,161 @@ a {
     color: var(--accent-chocolate);
     margin: auto 0 20px 0;
 }
+
+/* --- Sección de Impacto Comunitario --- */
+.community-impact {
+    background-color: var(--accent-chocolate);
+    color: var(--bg-main);
+    padding: 40px 0;
+    text-align: center;
+}
+.community-impact h2 {
+    color: var(--white);
+}
+
+/* --- Footer --- */
+.footer {
+    background: var(--text-main);
+    color: var(--bg-main);
+    padding: 25px 0;
+    text-align: center;
+}
+
+.footer a {
+    color: var(--white);
+    margin: 0 10px;
+}
+/* --- Estilos para Páginas de Formularios --- */
+.main-form {
+    padding: 60px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.form-container {
+    background-color: var(--white);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+}
+
+.form-container h2 {
+    font-size: 2.5rem;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.form-container p {
+    margin-bottom: 30px;
+    color: var(--text-main);
+}
+
+.form-header {
+    margin-bottom: 20px;
+}
+
+.form-logo {
+    max-height: 80px;
+    margin-bottom: 15px;
+}
+
+/* --- Grupos de Formulario y Campos --- */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    font-family: var(--font-main);
+    font-size: 1rem;
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-pink);
+    box-shadow: 0 0 5px rgba(255, 192, 203, 0.5);
+}
+
+.form-container .btn {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+}
+
+.form-switch {
+    margin-top: 20px;
+    font-size: 0.9rem;
+}
+
+.form-switch a {
+    color: var(--accent-chocolate);
+    font-weight: 700;
+}
+
+/* --- Mensajes de Error --- */
+.error-message {
+    color: #D32F2F;
+    font-size: 0.85rem;
+    margin-top: 5px;
+    display: none; /* Oculto por defecto */
+}
+
+.form-group.error .error-message {
+    display: block; /* Visible cuando hay error */
+}
+
+.form-group.error input,
+.form-group.error textarea {
+    border-color: #D32F2F;
+}
+/* --- Estilos para Mensaje de Éxito del Formulario --- */
+.success-message-container {
+    background-color: #E8F5E9; /* Un verde pastel suave */
+    border: 2px solid #4CAF50; /* Borde verde */
+    border-radius: var(--border-radius);
+    padding: 20px;
+    text-align: center;
+    color: #2E7D32; /* Texto verde oscuro */
+}
+
+.success-message-container h3 {
+    font-family: var(--font-headings);
+    color: #1B5E20; /* Título aún más oscuro */
+    font-size: 2rem;
+    margin-top: 0;
+}
+
+.success-message-container ul {
+    list-style-type: '✓ '; /* Añade un check a cada item */
+    padding-left: 20px;
+    text-align: left;
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+
+.success-message-container ul li {
+    margin-bottom: 10px;
+}
+
+/* --- Estilos para la Página de Productos --- */
 .products-page {
     padding: 40px 0;
 }
@@ -273,12 +446,78 @@ a {
 .products-grid-container {
     flex-grow: 1;
 }
+
+/* --- Estilos para la Tarjeta de Producto en el Catálogo --- */
+.product-card .btn.add-to-cart-btn {
+    width: calc(100% - 40px);
+    margin: 10px 20px 0 20px;
+    background-color: var(--accent-chocolate);
+    color: var(--white);
+}
+.product-card .btn.btn-secondary {
+    background-color: transparent;
+    border: 2px solid var(--accent-chocolate);
+}
+
+
+/* --- Estilos para la Página de Detalle de Producto --- */
+.product-detail-page {
+    padding: 60px 0;
+}
+
+.product-detail-layout {
+    display: flex;
+    gap: 50px;
+    background-color: var(--white);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.product-detail-image {
+    flex: 1;
+    max-width: 500px;
+}
+
+.product-detail-image img {
+    width: 100%;
+    border-radius: var(--border-radius);
+}
+
+.product-detail-info {
+    flex: 1;
+}
+
+.product-detail-info h1 {
+    font-size: 3rem;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.product-detail-info .category {
+    font-weight: 700;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+
+.product-detail-info .description {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+.product-detail-info .price-detail {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--accent-chocolate);
+    margin-bottom: 30px;
+}
 /* =================================================================== */
 /* --- ESTILOS PARA LA PÁGINA DEL CARRITO (SEGÚN MOCKUP) --- */
 /* =================================================================== */
 .cart-page {
     padding: 60px 0;
-    background-color: #f8f9fa; /* Un fondo gris muy claro */
+    background-color: var(--bg-main);
 }
 
 .cart-page h1 {
@@ -455,7 +694,7 @@ a {
 /* =================================================================== */
 .cart-page {
     padding: 60px 0;
-    background-color: #f8f9fa;
+    background-color: #FFF5E1;
 }
 
 .cart-page h1 {
@@ -472,6 +711,7 @@ a {
     gap: 40px;
     align-items: flex-start;
 }
+
 /* Columna Izquierda */
 .cart-main-column {
     display: flex;
@@ -494,57 +734,866 @@ a {
     padding: 20px 0;
     border-bottom: 1px solid #eee;
 }
-.cart-item:last-child { 
-    border-bottom: none; 
+.cart-item:last-child { border-bottom: none; }
+.cart-item-image img { width: 80px; height: 80px; object-fit: cover; border-radius: var(--border-radius); }
+.cart-item-details h3 { margin: 0 0 5px 0; font-size: 1.1rem; }
+.cart-item-message { font-size: 0.9rem; color: #6c757d; margin: 0; }
+.cart-item-quantity { display: flex; align-items: center; gap: 10px; justify-content: center; }
+.quantity-btn { width: 30px; height: 30px; border: 1px solid #ccc; background: #f1f1f1; cursor: pointer; font-size: 1.2rem; border-radius: 50%; line-height: 28px; }
+.quantity-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.item-quantity { font-weight: 700; font-size: 1.1rem; }
+.cart-item-price, .cart-item-total { font-weight: 700; font-size: 1.1rem; width: 100px; text-align: right; color: var(--text-main); }
+.remove-item-btn { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #e74c3c; padding: 5px; }
+
+/* Acciones (Envío y Cupón) */
+.cart-actions-box {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
 }
-.cart-item-image img { 
-    width: 80px; 
-    height: 80px; 
-    object-fit: cover; 
-    border-radius: 
-    var(--border-radius);
+
+.shipping-calculator h4, .coupon-form h4 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-family: var(--font-headings);
+    color: var(--text-main);
 }
-.cart-item-details h3 { 
-    margin: 0 0 5px 0; 
-    font-size: 1.1rem; 
+.coupon-form input, .shipping-calculator select, .shipping-calculator input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
 }
-.cart-item-message { 
-    font-size: 0.9rem; 
-    color: #6c757d; 
+.coupon-form, .shipping-calculator {
+    display: flex;
+    flex-direction: column;
+}
+.btn-secondary {
+    padding: 12px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: 700;
+    background-color: #f1f1f1; color: var(--text-main); transition: background-color 0.3s;
+}
+.btn-secondary:hover { background-color: #e0e0e0; }
+
+/* Columna Derecha */
+.cart-summary {
+    background: var(--white); padding: 30px; border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow); position: sticky; top: 120px;
+}
+.cart-summary h3 { font-size: 1.8rem; font-family: var(--font-headings); margin-top: 0; text-align: center; color: var(--accent-chocolate); }
+.summary-row { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #eee; font-size: 1.1rem; }
+.summary-row span:first-child { color: #6c757d; }
+.summary-row span:last-child { font-weight: 700; }
+#cart-discount-amount { color: #28a745; }
+.summary-row.total { font-size: 1.5rem; font-weight: 700; color: var(--accent-chocolate); border-bottom: none; }
+.btn-checkout {
+    width: 100%; margin-top: 20px; padding: 15px; font-size: 1.2rem;
+    background-color: var(--accent-chocolate); color: var(--white); border: none;
+    border-radius: var(--border-radius); cursor: pointer; transition: background-color 0.3s;
+}
+.btn-checkout:hover { background-color: #5D4037; }
+
+/* Responsividad */
+@media (max-width: 992px) {
+    .cart-layout { grid-template-columns: 1fr; }
+    .cart-summary { top: 20px; position: static; }
+    .cart-actions-box { grid-template-columns: 1fr; }
+}
+
+/* =================================================================== */
+/* --- ESTILOS PARA LAS PÁGINAS DEL BLOG --- */
+/* =================================================================== */
+
+/* --- Página de Listado de Blogs (blog.html) --- */
+.blog-page {
+    padding: 60px 0;
+}
+
+.blog-page h1 {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 50px;
+    font-family: var(--font-headings);
+    color: var(--text-main);
+}
+
+.blog-post-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    background-color: var(--white);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 40px;
+}
+
+.blog-post-card:nth-child(odd) .card-image {
+    order: 2; /* Alternar la posición de la imagen */
+}
+
+.card-content h2 {
+    margin-top: 0;
+    font-family: var(--font-headings);
+    font-size: 2.5rem;
+    color: var(--accent-chocolate);
+}
+
+.card-content p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+.card-image img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+}
+
+/* --- Página de Detalle del Blog (blog-detalle.html) --- */
+.blog-detail-page {
+    padding: 60px 0;
+}
+
+.blog-detail-page h1 {
+    font-size: 3.5rem;
+    font-family: var(--font-headings);
+    color: var(--text-main);
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.blog-main-image {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+    margin-bottom: 40px;
+}
+
+.blog-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.blog-content p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+.blog-content .intro {
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--text-main);
+    border-left: 4px solid var(--accent-pink);
+    padding-left: 20px;
+}
+
+.blog-content h3 {
+    font-family: var(--font-headings);
+    font-size: 2rem;
+    color: var(--accent-chocolate);
+    margin-top: 40px;
+}
+
+/* --- Responsividad para el Blog --- */
+@media (max-width: 768px) {
+    .blog-post-card {
+        grid-template-columns: 1fr;
+    }
+    .blog-post-card:nth-child(odd) .card-image {
+        order: 0;
+    }
+}
+/* =================================================================== */
+/* --- ESTILOS PARA LA PÁGINA "NOSOTROS" --- */
+/* =================================================================== */
+
+.about-page {
+    padding-bottom: 60px;
+}
+
+.about-intro {
+    background-color: var(--white);
+    text-align: center;
+    padding: 60px 20px;
+    margin-bottom: 60px;
+}
+
+.about-intro h1 {
+    font-size: 3.5rem;
+    font-family: var(--font-headings);
+    color: var(--accent-chocolate);
+    margin-top: 0;
+}
+
+.about-intro p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 20px auto 0;
+    color: var(--text-main);
+}
+
+/* --- Línea de Tiempo --- */
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto 60px;
+    padding: 20px 0;
+}
+.timeline h2 {
+    text-align: center;
+    font-family: var(--font-headings);
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 20px;
+    height: 100%;
+    width: 4px;
+    background: var(--accent-pink);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 50px;
+    padding-left: 60px;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 5px;
+    width: 25px;
+    height: 25px;
+    background-color: var(--white);
+    border: 4px solid var(--accent-pink);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.timeline-content h3 {
+    font-family: var(--font-headings);
+    color: var(--accent-chocolate);
+    font-size: 2rem;
+    margin-top: 0;
+}
+
+.timeline-content p {
+    line-height: 1.7;
+}
+
+/* --- Filosofía --- */
+.philosophy {
+    background-color: var(--bg-main);
+    padding: 60px 0;
+}
+
+.philosophy h2 {
+    text-align: center;
+    font-family: var(--font-headings);
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+}
+
+.philosophy-points {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    text-align: center;
+}
+
+.philosophy-item {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.philosophy-item h3 {
+    font-family: var(--font-headings);
+    color: var(--accent-chocolate);
+    font-size: 1.8rem;
+}
+
+/* --- Call to Action --- */
+.about-cta {
+    text-align: center;
+    padding: 60px 20px;
+}
+.about-cta h2 {
+    font-family: var(--font-headings);
+    font-size: 2.5rem;
+}
+/* =================================================================== */
+/* --- ESTILOS PARA EL MAPA DE GOOGLE MAPS --- */
+/* =================================================================== */
+
+.map-section {
+    padding: 60px 0;
+    text-align: center;
+}
+
+.map-section h2 {
+    font-family: var(--font-headings);
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.map-container {
+    max-width: 900px;
+    margin: 30px auto 0;
+    border-radius: var(--border-radius);
+    overflow: hidden; /* Esto asegura que el iframe respete los bordes redondeados */
+    box-shadow: var(--box-shadow);
+    line-height: 0; /* Corrige posibles espacios extra debajo del iframe */
+}
+
+.map-container iframe {
+    width: 100%; /* El mapa ocupará todo el ancho del contenedor */
+    border: none; /* Quitar el borde por defecto */
+}
+
+/* =================================================================== */
+/* --- ESTILOS FINALES PARA LA PÁGINA DE CONFIRMACIÓN --- */
+/* =================================================================== */
+.confirmation-page {
+    padding: 60px 0;
+    background-color: var(--bg-main); /* Usamos el color de fondo principal */
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.confirmation-box {
+    background: var(--white);
+    padding: 40px 50px;
+    border-radius: var(--border-radius);
+    text-align: center;
+    max-width: 700px;
+    width: 100%;
+    margin: auto;
+    box-shadow: var(--box-shadow);
+    border-top: 5px solid var(--accent-pink);
+}
+
+.confirmation-icon {
+    font-size: 4rem;
+    line-height: 1;
+    margin-bottom: 20px;
+}
+
+.confirmation-box h1 {
+    font-family: var(--font-headings);
+    color: var(--accent-chocolate);
+    font-size: 2.8rem;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.confirmation-box .subtitle {
+    font-size: 1.1rem;
+    color: #6c757d;
+    max-width: 500px;
+    margin: 0 auto 30px;
+}
+
+.order-summary {
+    margin: 30px 0;
+    text-align: left;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+.order-summary h3 {
+    text-align: center;
+    font-family: var(--font-headings);
+    color: var(--text-main);
+    margin-bottom: 20px;
+}
+.order-summary .item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #f7f7f7;
+}
+.summary-total {
+    margin-top: 20px;
+    font-size: 1.3rem;
+    text-align: right;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+
+.confirmation-actions {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+/* =================================================================== */
+/* --- ESTILOS PARA EL PANEL DE ADMINISTRADOR --- */
+/* =================================================================== */
+.admin-layout {
+    display: flex;
+}
+
+/* --- Sidebar --- */
+.admin-sidebar {
+    width: 240px;
+    background-color: var(--text-main); /* Usando colores de la tienda */
+    color: var(--bg-main);
+    height: 100vh;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+}
+.sidebar-header {
+    padding: 32px 20px 24px 20px;
+    text-align: center;
+    background-color: rgba(0,0,0,0.22);
+    font-family: var(--font-headings);
+}
+.sidebar-header .admin-logo-row {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    justify-content: center;
+}
+.sidebar-header .admin-logo-row img {
+    height: 60px;
+    width: auto;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.18));
+}
+.sidebar-header .admin-logo-row h2 {
+    color: var(--white);
+    font-size: 2.2rem;
     margin: 0;
- }
-.cart-item-quantity { 
-    display: flex; 
-    align-items: center; 
-    gap: 10px; 
-    justify-content: center; 
+    letter-spacing: 1px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.18);
 }
-.quantity-btn { 
-    width: 30px;
-    height: 30px; 
-    border: 1px solid #ccc; 
-    background: #f1f1f1; 
-    cursor: pointer; 
-    font-size: 1.2rem; 
-    border-radius: 50%; 
-    line-height: 28px; 
+.sidebar-header h2 { color: var(--white); }
+.admin-nav { flex-grow: 1; padding-top: 15px; }
+.admin-nav a {
+    color: var(--bg-main);
+    text-decoration: none;
+    display: block;
+    padding: 15px 25px;
+    transition: background-color 0.2s;
 }
-.quantity-btn:disabled { 
-    opacity: 0.5; 
-    cursor: not-allowed; 
+.admin-nav a:hover { background-color: var(--accent-chocolate); }
+.admin-nav a.active { background-color: var(--accent-pink); color: var(--accent-chocolate); font-weight: bold; }
+.sidebar-footer { padding: 20px; }
+#logout-btn {
+    width: 100%;
+    background: none;
+    border: 1px solid var(--bg-main);
+    color: var(--bg-main);
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 700;
 }
-.item-quantity { 
-    font-weight: 700; 
-    font-size: 1.1rem; }
-.cart-item-price, 
-.cart-item-total { 
-    font-weight: 700; 
-    font-size: 1.1rem; 
-    width: 100px; 
-    text-align: right; 
-    color: var(--text-main); }
-.remove-item-btn { 
-    background: none; 
-    border: none; 
-    font-size: 1.5rem; 
-    cursor: pointer; color: #e74c3c; padding: 5px; }
+
+
+/* --- Contenido Principal del Admin --- */
+.admin-content {
+    margin-left: 240px;
+    width: calc(100% - 240px);
+    padding: 30px;
+}
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    background: var(--white);
+    padding: 15px 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+.btn-primary {
+    background-color: var(--accent-chocolate);
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+}
+.btn-secondary {
+    background-color: #E0E0E0;
+    color: var(--text-main);
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+/* --- Dashboard --- */
+.dashboard-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+.stat-card { background-color: var(--white); padding: 20px; border-radius: 8px; box-shadow: var(--box-shadow); }
+.stat-card h4 { margin-top: 0; color: #7f8c8d; }
+.stat-card p { font-size: 2rem; font-weight: bold; margin-bottom: 0; color: var(--accent-chocolate); }
+
+/* --- Tablas --- */
+.table-container { background-color: var(--white); border-radius: 8px; box-shadow: var(--box-shadow); }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 15px; text-align: left; border-bottom: 1px solid #eee; }
+thead { background-color: #f9f9f9; }
+.actions-cell button, .actions-cell a {
+    margin-right: 5px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: 700;
+}
+.edit-btn { border: 1px solid var(--accent-chocolate); color: var(--accent-chocolate); background: none; }
+.delete-btn { border: 1px solid #e74c3c; color: #e74c3c; background: none; }
+
+/* --- Formularios del Admin --- */
+.form-container-admin { background-color: var(--white); padding: 30px; border-radius: 8px; box-shadow: var(--box-shadow); }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.form-group-admin.full-width { grid-column: 1 / -1; }
+.form-group-admin label { display: block; margin-bottom: 8px; font-weight: bold; }
+.form-group-admin input, .form-group-admin textarea, .form-group-admin select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+.form-actions { margin-top: 30px; text-align: right; }
+.form-actions > * { margin-left: 10px; }
+
+/* --- ESTILOS PARA DETALLE DE VENTA (ADMIN) --- */
+.order-detail-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+    margin-top: 20px;
+}
+.order-info, .order-items {
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+.order-info h3, .order-items h3 {
+    margin-top: 0;
+    font-family: var(--font-headings);
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+.order-info p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+.order-item-card {
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.order-item-card .item-name {
+    font-weight: 700;
+}
+.order-item-card .item-price {
+    float: right;
+    font-weight: 700;
+}
+.order-item-card .item-message {
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 8px;
+    display: block;
+    clear: both;
+}
+
+/* =================================================================== */
+/* --- ESTILOS MEJORADOS PARA PÁGINA DE CONTACTO Y FORMULARIOS --- */
+/* =================================================================== */
+/* 1. Aseguramos que el footer se mantenga siempre abajo */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* El cuerpo ocupa al menos toda la altura de la pantalla */
+}
+/* 2. Hacemos que el contenido principal crezca para ocupar el espacio */
+main {
+    flex-grow: 1;
+}
+
+/* 3. Estilos de la página de contacto y contenedores de formularios */
+.contact-page, .main-form {
+    padding: 60px 0;
+    display: flex;
+    align-items: center; /* Centra el formulario verticalmente */
+    justify-content: center;
+}
+
+.contact-container, .form-container {
+    max-width: 950px; /* Un poco más de espacio para el diseño de 2 columnas */
+    width: 100%;
+    margin: 0 auto;
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1); /* Sombra más suave */
+    overflow: hidden;
+}
+
+/* 4. Layout de 2 columnas para la página de contacto */
+.contact-container {
+    display: grid;
+    grid-template-columns: 2fr 1.2fr; /* Ajuste en la proporción */
+}
+
+.contact-form-wrapper {
+    padding: 50px;
+}
+
+/* 5. Estilos para formularios de una sola columna (Login, Registro) */
+.form-container {
+    padding: 50px;
+    max-width: 500px;
+}
+
+/* 6. Cabecera del formulario (logo y nombre) */
+.form-header {
+    margin-bottom: 30px;
+    text-align: center;
+}
+.form-logo {
+    max-height: 70px;
+    margin-bottom: 15px;
+}
+.form-header h3 {
+    font-family: var(--font-headings);
+    color: var(--accent-chocolate);
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+/* 7. Títulos y textos dentro del formulario */
+.contact-form-wrapper h2, .form-container h2 {
+    font-size: 2.8rem;
+    margin-top: 0;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.contact-form-wrapper p, .form-container p {
+    text-align: center;
+    color: #777;
+    margin-bottom: 35px;
+}
+
+/* 8. Campos del formulario (Inputs, Textarea) */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+    position: relative;
+}
+.form-group label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    font-family: var(--font-main);
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: all 0.3s;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-pink);
+    box-shadow: 0 0 8px rgba(255, 192, 203, 0.6);
+}
+
+/* 9. Botón de envío */
+.contact-container .btn, .form-container .btn {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+    background-color: var(--accent-pink);
+    border: none;
+}
+
+/* 10. Columna de Información Adicional (con íconos) */
+.contact-info-wrapper {
+    background-color: var(--text-main);
+    color: var(--white);
+    padding: 50px 40px;
+}
+.contact-info-wrapper h3 {
+    color: var(--white);
+    font-size: 2rem;
+    border-bottom: 2px solid var(--accent-pink);
+    padding-bottom: 10px;
+}
+.contact-details {
+    list-style: none;
+    padding: 0;
+    margin-top: 30px;
+}
+.contact-details li {
+    padding-left: 35px; /* Espacio para el ícono */
+    position: relative;
+    margin-bottom: 25px;
+    line-height: 1.7;
+}
+.contact-details li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 5px;
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* Íconos para cada detalle de contacto (requiere imágenes) */
+.contact-details li:nth-child(1)::before { background-image: url('../images/icon-address.svg'); }
+.contact-details li:nth-child(2)::before { background-image: url('../images/icon-phone.svg'); }
+.contact-details li:nth-child(3)::before { background-image: url('../images/icon-email.svg'); }
+.contact-details li:nth-child(4)::before { background-image: url('../images/icon-clock.svg'); }
+
+.contact-details li strong {
+    color: var(--accent-pink);
+    display: block;
+}
+
+/* 11. Responsividad para pantallas pequeñas */
+@media (max-width: 768px) {
+    .contact-container {
+        grid-template-columns: 1fr; /* Apila las columnas */
+    }
+}
+
+/* =================================================================== */
+/* --- ESTILOS PROFESIONALES PARA DETALLE DE PRODUCTO --- */
+/* =================================================================== */
+.product-detail-page {
+    padding: 40px 0 60px 0;
+}
+
+/* 1. Estilos para Migas de Pan (Breadcrumbs) */
+.breadcrumbs {
+    margin-bottom: 30px;
+    font-size: 0.9rem;
+    color: #888;
+}
+.breadcrumbs a {
+    color: var(--text-main);
+    text-decoration: none;
+}
+.breadcrumbs a:hover {
+    text-decoration: underline;
+}
+
+
+/* 3. Galería de Imágenes (Columna Izquierda) */
+.product-gallery .main-image img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+    border: 1px solid #eee;
+}
+.thumbnail-images {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+.thumbnail-images img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.3s;
+}
+.thumbnail-images img.active, .thumbnail-images img:hover {
+    border-color: var(--accent-pink);
+}
+
+/* 4. Información del Producto (Columna Derecha) */
+.product-info .product-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+.product-info h1 {
+    font-size: 2.8rem;
+    margin: 0;
+    color: var(--text-main);
+}
+.product-info .price-detail {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--accent-chocolate);
+    white-space: nowrap;
+    margin-left: 20px;
+}
+.product-info .description {
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+.purchase-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: var(--border-radius);
+}
+.quantity-selector label {
+    font-weight: 700;
+    margin-right: 10px;
+}
+.quantity-selector input {
+    width: 60px;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.purchase-actions .btn {
+    flex-grow: 1; /* El botón ocupa el espacio restante */
+}
+
+/* 5. Productos Relacionados */
+.related-products {
+    margin-top: 80px;
+}
+.related-products h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+}
