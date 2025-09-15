@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Producto - Admin</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <div class="sidebar-header"><h2>Admin Panel</h2></div>
+            <nav class="admin-nav">
+                <a href="index.html">Dashboard</a>
+                <a href="productos.html" class="active">Productos</a>
+                <a href="usuarios.html">Usuarios</a>
+                <a href="ventas.html">Ventas</a>
+            </nav>
+            <div class="sidebar-footer"><button id="logout-btn">Cerrar Sesión</button></div>
+        </aside>
+        <main class="admin-content">
+            <header class="admin-header">
+                <h1 id="form-title">Agregar Producto</h1>
+            </header>
+            <div class="form-container-admin">
+                <form id="product-form">
+                    <input type="hidden" id="product-id">
+                    <div class="form-grid">
+                        <div class="form-group-admin">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" id="nombre" required>
+                        </div>
+                        <div class="form-group-admin">
+                            <label for="precio">Precio</label>
+                            <input type="number" id="precio" required min="0">
+                        </div>
+                        <div class="form-group-admin">
+                            <label for="stock">Stock</label>
+                            <input type="number" id="stock" required min="0">
+                        </div>
+                        <div class="form-group-admin">
+                            <label for="categoria">Categoría</label>
+                            <select id="categoria" required></select>
+                        </div>
+                         <div class="form-group-admin full-width">
+                            <label for="codigo">Código (ID)</label>
+                            <input type="text" id="codigo" required minlength="3">
+                        </div>
+                        <div class="form-group-admin full-width">
+                            <label for="descripcion">Descripción</label>
+                            <textarea id="descripcion" rows="4"></textarea>
+                        </div>
+                         <div class="form-group-admin full-width">
+                            <label for="imagen">URL de la Imagen</label>
+                            <input type="text" id="imagen" placeholder="Ej: assets/images/TC001.jpg">
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <a href="productos.html" class="btn-secondary">Volver</a>
+                        <button type="submit" class="btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+    <script src="admin.js"></script>
+</body>
+</html>
