@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- LÓGICA DE DATOS E INICIALIZACIÓN ---
-    // Mantenemos la lista de productos para saber qué estamos añadiendo al carrito.
     const initialProducts = [
         { id: 'TC001', category: 'Tortas Cuadradas', name: 'Torta Cuadrada de Chocolate', price: 45000, image: 'assets/images/TC001.jpg', description: 'Deliciosa torta de chocolate con capas de ganache y un toque de avellanas. Personalizable con mensajes especiales.', stock: 15, size: 'Familiar', personalizable: true },
         { id: 'TC002', category: 'Tortas Cuadradas', name: 'Torta Cuadrada de Frutas', price: 50000, image: 'assets/images/TC002.jpg', description: 'Una mezcla de frutas frescas y crema chantilly sobre un suave bizcocho de vainilla, ideal para celebraciones.', stock: 12, size: 'Familiar', personalizable: true },
@@ -20,21 +19,16 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 'TE001', category: 'Tortas Especiales', name: 'Torta Especial de Cumpleaños', price: 55000, image: 'assets/images/TE001.jpg', description: 'Diseñada especialmente para celebraciones, personalizable con decoraciones y mensajes únicos.', stock: 10, size: 'Familiar', personalizable: true },
         { id: 'TE002', category: 'Tortas Especiales', name: 'Torta Especial de Boda', price: 60000, image: 'assets/images/TE002.jpg', description: 'Elegante y deliciosa, esta torta está diseñada para ser el centro de atención en cualquier boda.', stock: 5, size: 'Familiar', personalizable: true }
     ];
-    // Guardamos los productos en localStorage si no existen ya (para persistencia simple).
+
     if (!localStorage.getItem('products')) {
         localStorage.setItem('products', JSON.stringify(initialProducts));
     }
     const products = JSON.parse(localStorage.getItem('products'));
 
-    // --- FUNCIONES ESENCIALES DEL CARRITO ---
-
-    // Obtiene el carrito desde localStorage. Si no existe, devuelve un array vacío.
+    // --- FUNCIONES GLOBALES ---
     const getCart = () => JSON.parse(localStorage.getItem('cart')) || [];
-
-    // Guarda el carrito en localStorage.
     const saveCart = (cart) => localStorage.setItem('cart', JSON.stringify(cart));
-
-    // Actualiza el número en el ícono del carrito en el header.
+    
     const updateCartCounter = () => {
         const cart = getCart();
         const cartCounter = document.getElementById('cart-counter');
@@ -42,68 +36,26 @@ document.addEventListener('DOMContentLoaded', () => {
         if (cartCounter) cartCounter.textContent = totalItems;
     }
 
-    // Añade un producto al carrito. Si ya existe, aumenta su cantidad.
-    const addToCart = (productId) => {
+    const addToCart = (productId, message = null) => {
         const cart = getCart();
-        const productInCart = cart.find(item => item.id === productId);
-
-        if (productInCart) {
-            productInCart.quantity++; // Aumenta la cantidad
+        if (message) {
+            const uniqueItemId = `${productId}-${Date.now()}`;
+            cart.push({ id: productId, quantity: 1, message: message, uniqueId: uniqueItemId });
         } else {
-            cart.push({ id: productId, quantity: 1 }); // Añade el producto nuevo
+            const productInCart = cart.find(item => item.id === productId && !item.message);
+            if (productInCart) {
+                productInCart.quantity++;
+            } else {
+                cart.push({ id: productId, quantity: 1 });
+            }
         }
-        
         saveCart(cart);
         updateCartCounter();
         alert('¡Producto añadido al carrito!');
     };
 
-    // --- LÓGICA PARA "DIBUJAR" LOS PRODUCTOS EN LA PÁGINA DEL CARRITO ---
-    const cartItemsContainer = document.getElementById('cart-items-container');
-    if (cartItemsContainer) {
-        const cart = getCart();
-        
-        if (cart.length > 0) {
-            cartItemsContainer.innerHTML = ''; // Limpiar el mensaje de "carrito vacío"
-            let subtotal = 0;
 
-            cart.forEach(item => {
-                const product = products.find(p => p.id === item.id);
-                if (product) {
-                    const itemTotal = product.price * item.quantity;
-                    subtotal += itemTotal;
-                    
-                    const cartItemHTML = `
-                        <div class="cart-item" data-id="${product.id}">
-                            <div class="cart-item-image">
-                                <img src="${product.image}" alt="${product.name}">
-                            </div>
-                            <div class="cart-item-details">
-                                <h3>${product.name}</h3>
-                                <div class="cart-item-quantity">
-                                    <button class="quantity-btn decrease-qty">-</button>
-                                    <span class="item-quantity">${item.quantity}</span>
-                                    <button class="quantity-btn increase-qty">+</button>
-                                </div>
-                            </div>
-                            <div class="cart-item-price">$${product.price.toLocaleString('es-CL')}</div>
-                            <div class="cart-item-total">$${itemTotal.toLocaleString('es-CL')}</div>
-                            <button class="remove-item-btn">✖</button>
-                        </div>
-                    `;
-                    cartItemsContainer.innerHTML += cartItemHTML;
-                }
-            });
-
-            // Actualizar el resumen del pedido
-            const cartSummaryContainer = document.getElementById('cart-summary-container');
-            if(cartSummaryContainer) {
-                document.getElementById('cart-subtotal').textContent = `$${subtotal.toLocaleString('es-CL')}`;
-                document.getElementById('cart-total').textContent = `$${subtotal.toLocaleString('es-CL')}`;
-                cartSummaryContainer.style.display = 'block';
-            }
-        }
-    }
+    // ...el resto de la lógica avanzada del carrito, renderizado, listeners y checkout debe ser copiada aquí...
 
 
     // --- 2. FUNCIÓN PARA "DIBUJAR" PRODUCTOS ---
@@ -150,6 +102,89 @@ document.addEventListener('DOMContentLoaded', () => {
             addToCart(productId);
         }
     });
+
+
+    // --- RENDERIZAR PRODUCTOS EN EL CARRITO ---
+    function renderCartItems() {
+        const cartItemsContainer = document.getElementById('cart-items-container');
+        if (!cartItemsContainer) return;
+        const cart = getCart();
+        cartItemsContainer.innerHTML = '';
+        if (cart.length === 0) {
+            cartItemsContainer.innerHTML = '<p>Tu carrito está vacío.</p>';
+            return;
+        }
+        cart.forEach(item => {
+            const product = products.find(p => p.id === item.id);
+            if (product) {
+                const itemTotal = product.price * item.quantity;
+                const messageHTML = item.message ? `<p class="cart-item-message"><em>Mensaje: "${item.message}"</em></p>` : '';
+                const cartItemHTML = `
+                    <div class="cart-item" data-id="${item.uniqueId || item.id}">
+                        <div class="cart-item-image"><img src="${product.image}" alt="${product.name}"></div>
+                        <div class="cart-item-details">
+                            <h3>${product.name}</h3>
+                            ${messageHTML}
+                            <div class="cart-item-quantity">
+                                <button class="quantity-btn decrease-qty">-</button>
+                                <span class="item-quantity">${item.quantity}</span>
+                                <button class="quantity-btn increase-qty">+</button>
+                            </div>
+                        </div>
+                        <div class="cart-item-price">$${product.price.toLocaleString('es-CL')}</div>
+                        <div class="cart-item-total">$${itemTotal.toLocaleString('es-CL')}</div>
+                        <button class="remove-item-btn">✖</button>
+                    </div>`;
+                cartItemsContainer.innerHTML += cartItemHTML;
+            }
+        });
+    }
+
+
+    // Llamar a la función al cargar la página del carrito y agregar listeners a los botones
+    if (window.location.pathname.endsWith('carrito.html')) {
+        renderCartItems();
+        const cartItemsContainer = document.getElementById('cart-items-container');
+        if (cartItemsContainer) {
+            cartItemsContainer.addEventListener('click', (e) => {
+                const target = e.target;
+                const cartItem = target.closest('.cart-item');
+                if (!cartItem) return;
+                const itemId = cartItem.dataset.id;
+                let cart = getCart();
+                // Aumentar cantidad
+                if (target.classList.contains('increase-qty')) {
+                    const item = cart.find(i => (i.uniqueId || i.id) === itemId);
+                    if (item) {
+                        item.quantity++;
+                        saveCart(cart);
+                        renderCartItems();
+                        updateCartCounter();
+                    }
+                }
+                // Disminuir cantidad
+                if (target.classList.contains('decrease-qty')) {
+                    const item = cart.find(i => (i.uniqueId || i.id) === itemId);
+                    if (item) {
+                        item.quantity--;
+                        if (item.quantity <= 0) {
+                            cart = cart.filter(i => (i.uniqueId || i.id) !== itemId);
+                        }
+                        saveCart(cart);
+                        renderCartItems();
+                        updateCartCounter();
+                    }
+                }
+                // Eliminar producto
+                if (target.classList.contains('remove-item-btn')) {
+                    cart = cart.filter(i => (i.uniqueId || i.id) !== itemId);
+                    saveCart(cart);
+                    renderCartItems();
+                    updateCartCounter();
+                }
+            });
+        }
+    }
 
     // --- INICIALIZACIÓN ---
     updateCartCounter(); // Para que el contador del header esté siempre actualizado.
