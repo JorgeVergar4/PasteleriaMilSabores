@@ -67,6 +67,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalUsersEl = document.getElementById('total-users');
     if (totalUsersEl) { totalUsersEl.textContent = getAllUsers().length; }
 
+    // --- DASHBOARD: Ventas Totales y Órdenes ---
+    const dashboardStats = document.querySelector('.dashboard-stats');
+    if (dashboardStats) {
+        const allOrders = JSON.parse(localStorage.getItem('orders')) || [];
+        let totalVentas = 0;
+        let totalOrdenes = allOrders.length;
+        allOrders.forEach(order => {
+            // Quitar símbolos y convertir a número si es string
+            let total = order.total;
+            if (typeof total === 'string') {
+                total = total.replace(/[^\d]/g, '');
+                total = parseInt(total, 10) || 0;
+            }
+            totalVentas += total;
+        });
+        // Actualizar en el dashboard
+        const ventasEl = dashboardStats.querySelector('.stat-card:nth-child(1) p');
+        if (ventasEl) ventasEl.textContent = `$${totalVentas.toLocaleString('es-CL')}`;
+        const ordenesEl = dashboardStats.querySelector('.stat-card:nth-child(2) p');
+        if (ordenesEl) ordenesEl.textContent = totalOrdenes;
+    }
+
     // --- LÓGICA DEL MANTENEDOR DE USUARIOS (usuarios.html) ---
     const usersTableBody = document.getElementById('users-table-body');
     if (usersTableBody) {
@@ -164,21 +186,25 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (userRunParam) {
                 // --- Lógica de Edición ---
+                // Reemplaza el usuario antiguo con los datos nuevos
                 const userIndex = users.findIndex(u => u.run === userRunParam);
                 if (userIndex !== -1) {
                     users[userIndex] = userData;
                 }
             } else {
                 // --- Lógica de Creación ---
+                // Primero, verificar que el RUN no exista
                 if (users.some(u => u.run === userData.run)) {
-                    alert('Error: Ya existe un usuario con este RUN.'); return;
+                    alert('Error: Ya existe un usuario con este RUN. No se puede crear un duplicado.');
+                    return; // Detiene la ejecución para no crear un duplicado
                 }
+                // Si no existe, lo agregamos
                 users.push(userData);
             }
             
-            saveAllUsers(users);
+            saveAllUsers(users); // Guardar la lista actualizada en localStorage
             alert('¡Usuario guardado con éxito!');
-            window.location.href = 'usuarios.html';
+            window.location.href = 'usuarios.html'; // Redirigir a la lista de usuarios
         });
     }
 
@@ -291,33 +317,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- 🔹 FUNCIÓN DE DESCUENTOS ---
-    function aplicarDescuentos(order, cliente) {
-        let total = order.items.reduce((acc, item) => acc + (item.price * item.quantity), 0);
-        let descuento = 0;
-
-        // Descuento por edad (< 18 años: 10%)
-        const nacimiento = new Date(cliente.fechaNacimiento);
-        const edad = new Date().getFullYear() - nacimiento.getFullYear();
-        if (edad < 18) {
-            descuento += total * 0.1;
-        }
-
-        // Descuento por código promocional
-        if (cliente.codigoPromo && cliente.codigoPromo.toUpperCase() === "DESC20") {
-            descuento += total * 0.2;
-        }
-
-        // Descuento por monto alto (> $100.000: 5%)
-        if (total > 100000) {
-            descuento += total * 0.05;
-        }
-
-        order.descuentoAplicado = descuento;
-        order.total = total - descuento;
-
-        return order;
-    }
 
     // --- LÓGICA PARA LA PÁGINA DE VENTAS (ventas.html) ---
     const salesTableBody = document.getElementById('sales-table-body');
@@ -365,57 +364,37 @@ document.addEventListener('DOMContentLoaded', () => {
                         <label for="order-status-select">Estado del pedido:</label>
                         <select id="order-status-select">
                             <option value="Pendiente" ${order.status === 'Pendiente' ? 'selected' : ''}>Pendiente</option>
+                            <option value="En preparación" ${order.status === 'En preparación' ? 'selected' : ''}>En preparación</option>
                             <option value="Enviado" ${order.status === 'Enviado' ? 'selected' : ''}>Enviado</option>
                             <option value="Entregado" ${order.status === 'Entregado' ? 'selected' : ''}>Entregado</option>
+                            <option value="Cancelado" ${order.status === 'Cancelado' ? 'selected' : ''}>Cancelado</option>
                         </select>
                         <button id="update-status-btn">Actualizar Estado</button>
                     `;
-                    const updateStatusBtn = document.getElementById('update-status-btn');
-                    updateStatusBtn.addEventListener('click', () => {
+                    document.getElementById('update-status-btn').addEventListener('click', () => {
                         const newStatus = document.getElementById('order-status-select').value;
                         order.status = newStatus;
-                        const orderIndex = allOrders.findIndex(o => o.id === order.id);
-                        if (orderIndex !== -1) {
-                            allOrders[orderIndex] = order;
-                            localStorage.setItem('orders', JSON.stringify(allOrders));
-                            alert('Estado del pedido actualizado.');
-                            window.location.reload();
-                        }
+                        // Actualizar en localStorage
+                        allOrders = allOrders.map(o => o.id === order.id ? order : o);
+                        localStorage.setItem('orders', JSON.stringify(allOrders));
+                        alert('Estado actualizado correctamente.');
+                        window.location.reload();
                     });
                 }
-            } else {
-                orderDetailContainer.innerHTML = '<p>Pedido no encontrado.</p>';
+                const itemsList = document.getElementById('order-items-list');
+                itemsList.innerHTML = '';
+                order.items.forEach(item => {
+                    const messageHTML = item.message ? `<p class="item-message"><em>Mensaje: "${item.message}"</em></p>` : '';
+                    itemsList.innerHTML += `
+                        <div class="order-item-card">
+                            <span class="item-name">${item.name} (x${item.quantity})</span>
+                            <span class="item-price">$${(item.price * item.quantity).toLocaleString('es-CL')}</span>
+                            ${messageHTML}
+                        </div>
+                    `;
+                });
             }
         }
-    }
-
-    // --- 🔹 NUEVO: BOTÓN FINALIZAR COMPRA (checkout.html) ---
-    const checkoutBtn = document.getElementById('finalizar-compra-btn');
-    if (checkoutBtn) {
-        checkoutBtn.addEventListener('click', () => {
-            const carrito = JSON.parse(localStorage.getItem('cart')) || [];
-            const cliente = JSON.parse(localStorage.getItem('currentCustomer')) || null;
-
-            if (!cliente) { alert('Debe iniciar sesión para finalizar la compra.'); return; }
-            if (carrito.length === 0) { alert('El carrito está vacío.'); return; }
-
-            let order = {
-                id: `ORD-${Date.now()}`,
-                date: new Date().toLocaleString(),
-                customer: cliente.nombre + ' ' + cliente.apellidos,
-                items: carrito,
-                status: 'Pendiente'
-            };
-
-            order = aplicarDescuentos(order, cliente);
-
-            let orders = JSON.parse(localStorage.getItem('orders')) || [];
-            orders.push(order);
-            localStorage.setItem('orders', JSON.stringify(orders));
-
-            localStorage.removeItem('cart'); // Vaciar carrito
-            window.location.href = 'confirmacion.html';
-        });
     }
 
 });

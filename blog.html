@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - Pastelería Mil Sabores</title>
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="header">
         <div class="container">
-            <div class="logo"><a href="index.html">Pastelería Mil Sabores</a></div>
+            <div class="logo">
+                <a href="index.html">Pastelería Mil Sabores</a>
+            </div>
             <nav class="navigation">
                 <ul>
                     <li><a href="index.html">Home</a></li>
@@ -23,15 +22,44 @@
                 </ul>
             </nav>
             <div class="user-options">
-                </div>
+                <a href="login.html" class="btn btn-secondary">Iniciar Sesión</a>
+                <a href="registro.html" class="btn">Registrarse</a>
+                  <a href="carrito.html" class="cart-icon">
+                      <img src="assets/images/carrito.svg" alt="Carrito de Compras">
+                      <span id="cart-counter">0</span>
+                  </a>
+                </a>
+            </div>
         </div>
     </header>
 
     <main class="blog-page">
         <div class="container">
-            <h1></h1>
+            <h1>Noticias Importantes</h1>
 
-            </div>
+            <article class="blog-post-card">
+                <div class="card-content">
+                    <h2>El Secreto de Nuestra Torta de Chocolate</h2>
+                    <p>Descubre la historia detrás de nuestra receta más famosa, un legado de 50 años que combina tradición familiar y los mejores ingredientes de Chile.</p>
+                    <a href="blog-detalle-1.html" class="btn">Ver Caso</a>
+                </div>
+                <div class="card-image">
+                    <img src="assets/images/blog-image-1.jpg" alt="Torta de chocolate en un plato">
+                </div>
+            </article>
+
+            <article class="blog-post-card">
+                <div class="card-content">
+                    <h2>Apoyando a los Futuros Chefs de Duoc UC</h2>
+                    <p>Nuestra alianza con estudiantes de gastronomía no solo enriquece nuestro menú, sino que también forma a la próxima generación de reposteros. Conoce más sobre este dulce proyecto.</p>
+                    <a href="blog-detalle-2.html" class="btn">Ver Caso</a>
+                </div>
+                <div class="card-image">
+                    <img src="assets/images/blog-image-2.jpg" alt="Estudiantes de cocina decorando un pastel">
+                </div>
+            </article>
+
+        </div>
     </main>
 
     <footer class="footer">
