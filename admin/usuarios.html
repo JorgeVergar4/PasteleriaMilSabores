@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionar Usuarios - Admin</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <div class="sidebar-header"><h2>Admin Panel</h2></div>
+            <nav class="admin-nav">
+                <a href="index.html">Dashboard</a>
+                <a href="productos.html">Productos</a>
+                <a href="usuarios.html" class="active">Usuarios</a>
+                <a href="ventas.html">Ventas</a>
+            </nav>
+            <div class="sidebar-footer"><button id="logout-btn">Cerrar Sesión</button></div>
+        </aside>
+        <main class="admin-content">
+            <header class="admin-header">
+                <h1>Listado de Usuarios</h1>
+                <a href="usuario-form.html" class="btn-primary">Agregar Usuario</a>
+            </header>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>RUN</th>
+                            <th>Nombre Completo</th>
+                            <th>Correo</th>
+                            <th>Rol</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="users-table-body">
+                        </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+    <script src="admin.js"></script>
+</body>
+</html>

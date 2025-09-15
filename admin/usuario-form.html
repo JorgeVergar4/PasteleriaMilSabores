@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Usuario - Admin</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <div class="sidebar-header"><h2>Admin Panel</h2></div>
+            <nav class="admin-nav">
+                <a href="index.html">Dashboard</a>
+                <a href="productos.html">Productos</a>
+                <a href="usuarios.html" class="active">Usuarios</a>
+                <a href="ventas.html">Ventas</a>
+            </nav>
+            <div class="sidebar-footer"><button id="logout-btn">Cerrar Sesión</button></div>
+        </aside>
+        <main class="admin-content">
+            <header class="admin-header">
+                <h1 id="form-title">Agregar Nuevo Usuario</h1>
+            </header>
+            <div class="form-container-admin">
+                <form id="user-form">
+                    <div class="form-grid">
+                        <div class="form-group-admin">
+                            <label for="run">RUN</label>
+                            <input type="text" id="run" required>
+                        </div>
+                        <div class="form-group-admin">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" id="nombre" required>
+                        </div>
+                        <div class="form-group-admin">
+                            <label for="apellidos">Apellidos</label>
+                            <input type="text" id="apellidos" required>
+                        </div>
+                        <div class="form-group-admin">
+                            <label for="email">Correo Electrónico</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group-admin">
+                            <label for="fecha-nacimiento">Fecha Nacimiento</label>
+                            <input type="date" id="fecha-nacimiento">
+                        </div>
+                        <div class="form-group-admin">
+                            <label for="tipo-usuario">Tipo de Usuario</label>
+                            <select id="tipo-usuario" required>
+                                <option value="Cliente">Cliente</option>
+                                <option value="Vendedor">Vendedor</option>
+                                <option value="Administrador">Administrador</option>
+                            </select>
+                        </div>
+                        <div class="form-group-admin">
+                            <label for="region">Región</label>
+                            <select id="region" required></select>
+                        </div>
+                        <div class="form-group-admin">
+                            <label for="comuna">Comuna</label>
+                            <select id="comuna" required></select>
+                        </div>
+                        <div class="form-group-admin full-width">
+                            <label for="direccion">Dirección</label>
+                            <input type="text" id="direccion" required>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <a href="usuarios.html" class="btn-secondary">Volver</a>
+                        <button type="submit" class="btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+    <script src="../assets/js/regiones-comunas.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>
