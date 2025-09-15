@@ -28,29 +28,59 @@
             <div class="user-options">
                 <a href="login.html" class="btn btn-secondary">Iniciar Sesión</a>
                 <a href="registro.html" class="btn">Registrarse</a>
-                <a href="carrito.html" class="cart-icon">
-                    <img src="assets/images/carrito.svg" alt="Carrito de Compras">
-                    <span id="cart-counter">0</span>
+                  <a href="carrito.html" class="cart-icon">
+                      <img src="assets/images/carrito.svg" alt="Carrito de Compras">
+                      <span id="cart-counter">0</span>
+                  </a>
                 </a>
             </div>
         </div>
     </header>
 
-    <main class="cart-page">
+<main class="cart-page">
         <div class="container">
-            <h1></h1>
+            <h1>Tu Carrito</h1>
             <div class="cart-layout">
                 
                 <div class="cart-main-column">
                     <div id="cart-items-container" class="cart-items-box">
-                        </div>
+                        <p>Tu carrito está vacío.</p> 
+                    </div>
 
                     <div class="cart-actions-box">
+                            <div class="shipping-calculator">
+                                <h4>Calcular envío</h4>
+                                <select id="shipping-region"></select>
+                                <select id="shipping-comuna"></select> <button id="update-shipping-btn" class="btn-secondary">Actualizar</button>
+                            </div>      
+                        <div class="coupon-form">
+                            <h4>Cupón de descuento</h4>
+                            <input type="text" id="coupon-code" placeholder="Código del cupón">
+                            <button id="apply-coupon-btn" class="btn-secondary">Aplicar cupón</button>
                         </div>
+                    </div>
                 </div>
 
                 <div class="cart-summary" id="cart-summary-container">
+                    <h3>Resumen del Pedido</h3>
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="cart-subtotal">$0</span>
                     </div>
+                    <div class="summary-row" id="cart-shipping-row">
+                        <span>Envío:</span>
+                        <span id="cart-shipping-cost">$0</span>
+                    </div>
+                    <div class="summary-row" id="cart-discount-row" style="display: none;">
+                        <span id="cart-discount-label">Descuento:</span>
+                        <span id="cart-discount-amount">$0</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total:</span>
+                        <span id="cart-total">$0</span>
+                    </div>
+                    <button class="btn btn-checkout">Finalizar Compra</button>
+                </div>
 
             </div>
         </div>
@@ -61,7 +91,6 @@
             <p>&copy; 2025 Pastelería Mil Sabores.</p>
         </div>
     </footer>
-    
     <script src="assets/js/regiones-comunas.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
