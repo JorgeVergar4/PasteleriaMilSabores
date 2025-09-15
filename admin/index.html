@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Admin</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <h2>Admin Panel</h2>
+            </div>
+            <nav class="admin-nav">
+                <a href="index.html" class="active">Dashboard</a>
+                <a href="productos.html">Productos</a>
+                <a href="usuarios.html">Usuarios</a> 
+                <a href="ventas.html">Ventas</a>   </nav>
+            <div class="sidebar-footer">
+                <button id="logout-btn">Cerrar Sesión</button>
+            </div>
+        </aside>
+        <main class="admin-content">
+            <header class="admin-header">
+                <h1>Dashboard</h1>
+                <div class="user-info">
+                    <span>Admin</span>
+                </div>
+            </header>
+            <section class="dashboard-stats">
+                <div class="stat-card">
+                    <h4>Ventas Totales</h4>
+                    <p>$0</p>
+                </div>
+                <div class="stat-card">
+                    <h4>Órdenes</h4>
+                    <p>0</p>
+                </div>
+                <div class="stat-card">
+                    <h4>Productos</h4>
+                    <p id="total-products">0</p>
+                </div>
+                <div class="stat-card">
+                    <h4>Usuarios</h4>
+                    <p id="total-users">0</p>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="admin.js"></script>
+</body>
+</html>
